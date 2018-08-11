@@ -178,10 +178,6 @@
                         <compilerArgs>
                             <arg>-parameters</arg>
                         </compilerArgs>
-                        <includes>
-                            <include>**/*Spec.*</include>
-                            <include>**/*Test.*</include>
-                        </includes>
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>io.micronaut</groupId>
@@ -217,10 +213,8 @@
                     <version>2.21.0</version>
                     <configuration>
                         <includes>
-                            <include>**/*Test.java</include>
-                            <include>**/*Spec.java</include>
-                            <include>**/*Test.groovy</include>
-                            <include>**/*Spec.groovy</include>
+                            <include>**/*Test.*</include>
+                            <include>**/*Spec.*</include>
                         </includes>
                     </configuration>
                 </plugin>
