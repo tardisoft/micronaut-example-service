@@ -1,0 +1,24 @@
+---
+micronaut:
+    application:
+        name: micronaut-example-service
+                
+#Uncomment to set server port
+#    server:
+#        port: 8080
+
+---
+micronaut:
+    metrics:
+        enabled: true
+---
+micronaut:
+    metrics:
+        enabled: true
+        export:
+            statsd:
+                enabled: true
+                flavor: datadog
+                step: PT1M
+                host: localhost
+                port: 8125
