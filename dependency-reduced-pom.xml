@@ -8,17 +8,6 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.codehaus.groovy</groupId>
-          <artifactId>groovy-eclipse-batch</artifactId>
-          <version>2.5.1-02</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.groovy</groupId>
-          <artifactId>groovy-eclipse-compiler</artifactId>
-          <version>3.0.0-01</version>
-          <extensions>true</extensions>
-        </plugin>
-        <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
           <configuration>
@@ -45,6 +34,25 @@
               </path>
             </annotationProcessorPaths>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.gmavenplus</groupId>
+          <artifactId>gmavenplus-plugin</artifactId>
+          <version>1.5</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>addSources</goal>
+                <goal>addTestSources</goal>
+                <goal>generateStubs</goal>
+                <goal>compile</goal>
+                <goal>testGenerateStubs</goal>
+                <goal>testCompile</goal>
+                <goal>removeStubs</goal>
+                <goal>removeTestStubs</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -86,42 +94,13 @@
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>test-compile</id>
-            <phase>process-test-sources</phase>
-            <goals>
-              <goal>testCompile</goal>
-            </goals>
-            <configuration>
-              <compilerId>groovy-eclipse-compiler</compilerId>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-eclipse-compiler</artifactId>
-            <version>3.0.0-01</version>
-          </dependency>
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-eclipse-batch</artifactId>
-            <version>2.5.1-02</version>
-          </dependency>
-        </dependencies>
         <configuration>
-          <compilerId>groovy-eclipse-compiler</compilerId>
           <verbose>true</verbose>
-          <includes>
-            <include>**/*Spec.*</include>
-          </includes>
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.groovy</groupId>
-        <artifactId>groovy-eclipse-compiler</artifactId>
-        <extensions>true</extensions>
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

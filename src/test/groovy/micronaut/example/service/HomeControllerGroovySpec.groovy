@@ -14,7 +14,6 @@ class HomeControllerGroovySpec extends Specification {
     @Shared @AutoCleanup EmbeddedServer embeddedServer = ApplicationContext.run(EmbeddedServer)
     @Shared @AutoCleanup RxHttpClient client = embeddedServer.applicationContext.createBean(RxHttpClient, embeddedServer.getURL())
 
-
     void "test index"() {
         given:
         HttpResponse response = client.toBlocking().exchange("/home")

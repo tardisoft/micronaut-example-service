@@ -30,6 +30,11 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>runtime-groovy</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>io.micronaut.configuration</groupId>
             <artifactId>micrometer-core</artifactId>
             <scope>compile</scope>
@@ -67,6 +72,11 @@
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>inject-java</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>inject-groovy</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -147,56 +157,16 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <compilerId>groovy-eclipse-compiler</compilerId>
                     <verbose>true</verbose>
-                    <includes>
-                        <include>**/*Spec.*</include>
-                    </includes>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>test-compile</id>
-                        <phase>process-test-sources</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                        <configuration>
-                            <compilerId>groovy-eclipse-compiler</compilerId>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-eclipse-compiler</artifactId>
-                        <version>3.0.0-01</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-eclipse-batch</artifactId>
-                        <version>2.5.1-02</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-eclipse-compiler</artifactId>
-                <extensions>true</extensions>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
             </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.codehaus.groovy</groupId>
-                    <artifactId>groovy-eclipse-batch</artifactId>
-                    <version>2.5.1-02</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.groovy</groupId>
-                    <artifactId>groovy-eclipse-compiler</artifactId>
-                    <version>3.0.0-01</version>
-                    <extensions>true</extensions>
-                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -224,6 +194,34 @@
                                 <version>${micronaut.version}</version>
                             </path>
                         </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.gmavenplus</groupId>
+                    <artifactId>gmavenplus-plugin</artifactId>
+                    <version>1.6.1</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>addTestSources</goal>
+                                <goal>addSources</goal>
+                                <goal>compileTests</goal>
+                                <goal>compile</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.21.0</version>
+                    <configuration>
+                        <includes>
+                            <include>**/*Test.java</include>
+                            <include>**/*Spec.java</include>
+                            <include>**/*Test.groovy</include>
+                            <include>**/*Spec.groovy</include>
+                        </includes>
                     </configuration>
                 </plugin>
             </plugins>
