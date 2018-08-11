@@ -28,10 +28,19 @@
             <compilerArgs>
               <arg>-parameters</arg>
             </compilerArgs>
+            <includes>
+              <include>**/*Spec.*</include>
+              <include>**/*Test.*</include>
+            </includes>
             <annotationProcessorPaths>
               <path>
                 <groupId>io.micronaut</groupId>
                 <artifactId>inject-java</artifactId>
+                <version>${micronaut.version}</version>
+              </path>
+              <path>
+                <groupId>io.micronaut</groupId>
+                <artifactId>inject-groovy</artifactId>
                 <version>${micronaut.version}</version>
               </path>
             </annotationProcessorPaths>
@@ -105,7 +114,7 @@
           <compilerId>groovy-eclipse-compiler</compilerId>
           <verbose>true</verbose>
           <includes>
-            <include>*Spec.*</include>
+            <include>**/*Spec.*</include>
           </includes>
         </configuration>
       </plugin>
