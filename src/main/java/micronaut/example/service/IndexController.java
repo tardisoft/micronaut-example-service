@@ -7,9 +7,9 @@ import io.reactivex.Single;
 @Controller("/")
 public class IndexController {
 
-    @Get()
+    @Get
     public Single<String> index() {
-        return Single.just("Use /{transactionId}");
+        return Single.just("Index");
     }
 
 }
